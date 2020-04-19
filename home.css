@@ -1,25 +1,189 @@
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-  background-color: #ccc;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-  padding: 0 18px;
-  display: none;
+body {
+  font-family: 'Cormorant Garamond', serif;
+  height:100vh;
+  /* space between lines */
+  line-height: 1.6;
+  /* if content is too big to fit area, you clip the overflowing parts */
   overflow: hidden;
-  background-color: #f1f1f1;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  /* snap scroll in y-direction, also possible in x */
+  scroll-snap-type: y mandatory;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  position: fixed;
+  top: 0;
+  /*stack order, layer*/
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(255,255,255,0.7);
+}
+
+/* Style the links inside the navigation bar */
+/* .topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Cormorant Garamond', serif;
+} */
+
+.topnav ul {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.topnav ul li {
+  /* relative to the font size */
+  margin: 0 1rem;
+  padding: 1rem;
+}
+
+.topnav ul li a {
+  /* remove underline */
+  text-decoration: none;
+  color: black;
+}
+
+/* hover state of links */
+.topnav ul li a:hover {
+  color: gray;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  /* no matter how browser is sized, we want to take up all */
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+section h1 {
+  font-size: 4rem;
+}
+
+section p {
+  font-size: 1.5rem;
+}
+
+section#news {
+  background: url('https://source.unsplash.com/VRxo0yY-gyM/1600x900') no-repeat center center/cover;;
+}
+
+section#contact {
+  background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/cover;;
+}
+
+section#about {
+  background: url('https://source.unsplash.com/2aAHlfDOhJM/1600x900') no-repeat center center/cover;;
+}
+
+.wrapper {
+  /* The height needs to be set to a fixed value for the effect to work.
+   * 100vh is the full height of the viewport. */
+  height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+  perspective: 2px;
+}
+
+/* .section {
+  Needed for children to be absolutely positioned relative to the parent.
+  position: relative;
+  The height of the container. Must be set, but it doesn't really matter what the value is.
+  height: 100vh;
+
+  For text formatting.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+} */
+
+/* .section {
+  display: block;
+  background: #CFF;
+  height:100%;
+  width:100%;
+  padding: 60px;
+  padding-left: 120px;
+  box-sizing:border-box;
+} */
+
+
+
+.container {
+  width: 100%;
+  height: 100%;
+  /*css smooth scroll*/ 
+}
+
+.front {
+  padding-top: 100px;
+}
+.kiks {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: auto;
+}
+.parallax::after {
+  /* Display and position the pseudo-element */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Move the pseudo-element back away from the camera,
+   * then scale it back up to fill the viewport.
+   * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+  transform: translateZ(-1px) scale(1.5);
+  /* Force the background image to fill the whole element. */
+  background-size: 100%;
+  /* Keep the image from overlapping sibling elements. */
+  z-index: -1;
+}
+
+/* The styling for the static div. */
+.static {
+  background: rgb(248, 199, 199);
+  height: 100vh;
+}
+
+/* Sets the actual background images. This part is crucial. */
+.bg1::after {
+  background-image: url('italy-me.jpg');
+  background-color: #f9f4f4;
+}
+
+.bg2::after {
+  background-image: url('https://placekitten.com/g/800/600');
 }
